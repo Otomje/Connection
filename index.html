@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connection</title>
+  <link rel="icon" type="image/png" href="logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dnt: #786464;
+      --ess: #646478;
+      --phn: #3c3c50;
+      --txt: #ffffff;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0px 15px;
+      background-color: var(--phn);
+      font-family: "Comfortaa", sans-serif;
+    }
+
+    .phon {
+      width: 300px;
+      height: 50px;
+      display: flex;
+      border-radius: 30px;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      padding: 0px 10px;
+      background: var(--ess);
+      box-shadow: 0px 5px 10px rgba(20, 20, 40, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    p {
+      font-size: 20px;
+      display: flex;
+      color: var(--txt);
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 290px) {
+      .phon {
+        display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="phon">
+    <p id="statusText">· · ·</p>
+  </div>
+<script>
+  function updateStatus() {
+    const textEl = document.getElementById("statusText");
+    const phonEl = document.querySelector(".phon");
+
+    if (navigator.onLine) {
+      textEl.textContent = "З'єднання присутнє";
+      phonEl.style.background = "var(--ess)";
+    } else {
+      textEl.textContent = "З'єднання перервано";
+      phonEl.style.background = "var(--dnt)";
+    }
+  }
+
+  window.addEventListener("load", () => {
+    setTimeout(updateStatus, 500);
+  });
+
+  window.addEventListener("online", updateStatus);
+  window.addEventListener("offline", updateStatus);
+
+  document.querySelector(".phon").addEventListener("click", () => {
+    const docEl = document.documentElement;
+
+    if (!document.fullscreenElement) {
+      docEl.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen();
+    }
+  });
+</script>
+</body>
+</html>
