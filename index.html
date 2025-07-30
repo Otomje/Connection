@@ -17,13 +17,25 @@
       --txt: #ffffff;
     }
 
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0px 15px;
+      background-color: var(--phn);
+      overflow: hidden;
+      font-family: "Comfortaa", sans-serif;
+    }
+
     @keyframes LF {
       0%   { transform: translateX(0); }
       25%  { transform: translateX(-3px); }
       75%  { transform: translateX(3px); }
       100% { transform: translateX(0); }
     }
-
     @keyframes RG {
       0%   { transform: translateX(0); }
       25%  { transform: translateX(3px); }
@@ -32,80 +44,42 @@
       100% { transform: translateX(0); }
     }
 
-    @keyframes TP {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(3px); }
-      100% { transform: translateY(0); }
-    }
-
-    body {
-      height: 100vh;
-      padding: 0px 15px;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      user-select: none;
-      background-color: var(--phn);
-      font-family: "Comfortaa", sans-serif;
-    }
-
-    .datetime-container {
-      display: flex;
-      justify-content: space-between;
-      width: 260px;
-      margin-bottom: 20px;
-    }
-
     .clock {
+      margin-bottom: 20px;
+      background: var(--ess);
       padding: 10px 18px;
       border-radius: 30px;
-      font-size: 30px;
-      background: var(--ess);
       box-shadow: 0px 5px 10px rgba(20, 20, 40, 0.2);
+      user-select: none;
+      font-size: 30px;
       animation: LF 8s ease-in-out infinite;
     }
 
-    #clocktext {
+    #clockText {
+      color: var(--txt);
       margin: 0;
-      color: var(--txt);
-    }
-
-    .data {
-      font-size: 30px;
-      border-radius: 30px;
-      padding: 10px 18px;
-      background: var(--ess);
-      box-shadow: 0px 5px 10px rgba(20, 20, 40, 0.2);
-      animation: RG 8s ease-in-out infinite;
-    }
-
-    #datatext {
-      margin: 0px;
-      color: var(--txt);
     }
 
     .phon {
       width: 310px;
       height: 60px;
-      padding: 0px 10px;
-      border-radius: 30px;
       display: flex;
+      border-radius: 30px;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      user-select: none;
+      padding: 0px 10px;
       background: var(--ess);
       box-shadow: 0px 5px 10px rgba(20, 20, 40, 0.2);
       transition: background 0.3s ease;
-      animation: TP 5s ease-in-out infinite;
+      cursor: pointer;
+      animation: RG 8s ease-in-out infinite;
     } 
 
     #statusText {
-      margin: 0;
       font-size: 25px;
       color: var(--txt);
+      margin: 0;
     }
 
     @media (max-width: 290px) {
@@ -116,13 +90,8 @@
   </style>
 </head>
 <body>
-  <div class="datetime-container">
-    <div class="data">
-      <p id="datatext">· · ·</p>
-    </div>
-    <div class="clock">
-      <p id="clocktext">· · ·</p>
-    </div>
+  <div class="clock">
+    <p id="clockText">00:00</p>
   </div>
   <div class="phon">
     <p id="statusText">· · ·</p>
@@ -130,22 +99,15 @@
 
   <script>
     function updateClock() {
-      const clockEl = document.getElementById("clocktext");
-      const dateEl = document.getElementById("datatext");
+      const clockEl = document.getElementById("clockText");
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, "0");
       const minutes = String(now.getMinutes()).padStart(2, "0");
-      const day = String(now.getDate()).padStart(2, "0");
-      const month = String(now.getMonth() + 1).padStart(2, "0");
       clockEl.textContent = `${hours}:${minutes}`;
-      dateEl.textContent = `${day}/${month}`;
     }
 
-    window.addEventListener("load", () => {
-      setTimeout(updateClock, 500); // Додаємо затримку 500 мс для першого виклику
-    });
-
-    setInterval(updateClock, 1000); // Продовжуємо оновлювати кожну секунду
+    setInterval(updateClock, 1000);
+    updateClock();
 
     function updateStatus() {
       const textEl = document.getElementById("statusText");
