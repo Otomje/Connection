@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google" content="notranslate" />
   <title>Connection</title>
-  <link rel="icon" type="image/png" href="logo/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
@@ -36,6 +35,7 @@
       75%  { transform: translateX(3px); }
       100% { transform: translateX(0); }
     }
+
     @keyframes RG {
       0%   { transform: translateX(0); }
       25%  { transform: translateX(3px); }
@@ -82,16 +82,20 @@
       margin: 0;
     }
 
-    @media (max-width: 290px) {
+    @media (max-width: 350px) {
       .phon {
         display: none;
-      }
     }
+
+      .clock {
+        display: none;
+    }
+  }
   </style>
 </head>
 <body>
   <div class="clock">
-    <p id="clockText">00:00</p>
+    <p id="clockText">· · ·</p>
   </div>
   <div class="phon">
     <p id="statusText">· · ·</p>
