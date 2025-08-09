@@ -1,1 +1,82 @@
+  :root {
+      --dnt: #786464;
+      --ess: #646478;
+      --phn: #3c3c50;
+      --txt: #ffffff;
+    }
 
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0px 15px;
+      background-color: var(--phn);
+      overflow: hidden;
+      font-family: "Comfortaa", sans-serif;
+    }
+
+    @keyframes LF {
+      0%   { transform: translateX(0); }
+      25%  { transform: translateX(-3px); }
+      75%  { transform: translateX(3px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes RG {
+      0%   { transform: translateX(0); }
+      25%  { transform: translateX(3px); }
+      50%  { transform: translateX(0px); }
+      75%  { transform: translateX(-3px); }
+      100% { transform: translateX(0); }
+    }
+
+    .clock {
+      margin-bottom: 20px;
+      background: var(--ess);
+      padding: 10px 18px;
+      border-radius: 30px;
+      box-shadow: 0px 5px 10px rgba(20, 20, 40, 0.2);
+      user-select: none;
+      font-size: 30px;
+      animation: LF 8s ease-in-out infinite;
+    }
+
+    #clockText {
+      color: var(--txt);
+      margin: 0;
+    }
+
+    .phon {
+      width: 310px;
+      height: 60px;
+      display: flex;
+      border-radius: 30px;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      padding: 0px 10px;
+      background: var(--ess);
+      box-shadow: 0px 5px 10px rgba(20, 20, 40, 0.2);
+      transition: background 0.3s ease;
+      cursor: pointer;
+      animation: RG 8s ease-in-out infinite;
+    } 
+
+    #statusText {
+      font-size: 25px;
+      color: var(--txt);
+      margin: 0;
+    }
+
+    @media (max-width: 350px) {
+      .phon {
+        display: none;
+    }
+
+      .clock {
+        display: none;
+    }
+  }
